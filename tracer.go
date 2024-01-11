@@ -20,6 +20,7 @@ type tracer interface {
 type response interface {
 	ResponseFailed(ctx, code interface{}) error
 	ResponseSuccess(ctx, response interface{}, code ...interface{}) error
+	ResponseErrors(ctx, code interface{}, errs interface{}) error
 }
 
 type Trace struct {

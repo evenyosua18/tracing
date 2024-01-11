@@ -157,6 +157,19 @@ func ResponseError(span, ctx, code interface{}, err error) error {
 	return tracing.res.ResponseFailed(ctx, code)
 }
 
+func ResponseErrors(span, ctx, code interface{}, err interface{}) error {
+	tracing.PrintLog("hit exported function of ResponseError")
+
+	//tracing & logging
+	LogObject(span, "list error", err)
+
+	if tracing.res == nil {
+		return fmt.Errorf("response model is empty")
+	}
+
+	return tracing.res.ResponseErrors(ctx, code, err)
+}
+
 func ResponseSuccess(span, ctx, response interface{}, code ...interface{}) error {
 	tracing.PrintLog("hit exported function of ResponseSuccess")
 
