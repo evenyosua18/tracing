@@ -18,7 +18,7 @@ type tracer interface {
 }
 
 type response interface {
-	ResponseFailed(ctx, code interface{}) error
+	ResponseFailed(ctx, code interface{}, err error) error
 	ResponseSuccess(ctx, response interface{}, code ...interface{}) error
 	ResponseErrors(ctx, code interface{}, errs interface{}) error
 }

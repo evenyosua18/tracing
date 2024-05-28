@@ -154,7 +154,7 @@ func ResponseError(span, ctx, code interface{}, err error) error {
 	}
 
 	//return tracing..ResponseFailedHTTP(ctx, err)
-	return tracing.res.ResponseFailed(ctx, code)
+	return tracing.res.ResponseFailed(ctx, code, err)
 }
 
 func ResponseErrors(span, ctx, code interface{}, err interface{}) error {
@@ -170,7 +170,7 @@ func ResponseErrors(span, ctx, code interface{}, err interface{}) error {
 	return tracing.res.ResponseErrors(ctx, code, err)
 }
 
-func ResponseSuccess(span, ctx, response interface{}, code ...interface{}) error {
+func ResponseSuccess(span, ctx, response interface{}, additions ...interface{}) error {
 	tracing.PrintLog("hit exported function of ResponseSuccess")
 
 	//tracing & logging
@@ -180,7 +180,7 @@ func ResponseSuccess(span, ctx, response interface{}, code ...interface{}) error
 		return fmt.Errorf("response model is empty")
 	}
 
-	return tracing.res.ResponseSuccess(ctx, response, code...)
+	return tracing.res.ResponseSuccess(ctx, response, additions...)
 }
 
 func GetTraceID(span interface{}) string {
