@@ -55,6 +55,19 @@ func StartChild(ctx context.Context, request ...interface{}) interface{} {
 	return nil
 }
 
+func StartSpan(ctx interface{}, request ...interface{}) interface{} {
+	tracing.PrintLog("hit exported function of StartSpan")
+
+	if tracing.tracer != nil {
+		tracing.PrintLog("call StartSpan")
+		return tracing.StartSpan(ctx, request)
+	}
+
+	tracing.PrintLog("tracer is nil")
+
+	return nil
+}
+
 func Close(span interface{}) {
 	tracing.PrintLog("hit exported function of Close")
 
