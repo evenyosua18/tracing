@@ -10,6 +10,7 @@ type logger interface {
 type tracer interface {
 	StartParent(ctx interface{}) interface{}
 	StartChild(ctx context.Context, request ...interface{}) interface{}
+	StartSpan(ctx interface{}, request ...interface{}) interface{}
 	Close(span interface{})
 	Context(span interface{}) context.Context
 	LogError(span interface{}, err error, status ...int)
